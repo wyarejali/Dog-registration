@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .dog-eclipse,
 .dog-eclipse p {
     --success: #00b82f;
@@ -10,8 +17,14 @@
 }
 
 .dog-eclipse-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
     align-items: end;
 }
 
@@ -35,9 +48,13 @@
 }
 
 .dog-registration-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     gap: var(--space);
     margin-top: var(--space);
+    -webkit-box-align: self-start;
+    -ms-flex-align: self-start;
     align-items: self-start;
 }
 
@@ -56,6 +73,8 @@
 }
 
 .dogs-details-wrapper {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
     flex: 1;
 }
 
@@ -77,13 +96,16 @@
 }
 
 .all-dogs {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 1fr var(--space) 1fr;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space);
     margin-bottom: var(--space);
 }
 
 .all-dogs:has(.dog-item:nth-child(1):nth-last-child(1)) {
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
 }
 
@@ -113,9 +135,13 @@ tr.section td {
 }
 
 .dogs-details-wrapper td.certificate a.button {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
     background: var(--download);
     color: #fff;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     padding: 5px 20px;
     gap: 10px;
@@ -133,18 +159,25 @@ tr.section td {
 /* Responsive css */
 @media only screen and (max-width: 1400px) {
     .all-dogs {
+        -ms-grid-columns: 1fr;
         grid-template-columns: repeat(1, 1fr);
     }
 }
 
 @media only screen and (max-width: 1024px) {
     .dog-registration-container {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
 }
 
 @media only screen and (max-width: 768px) {
     .dog-eclipse-header {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
 }

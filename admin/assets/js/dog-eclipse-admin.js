@@ -13,7 +13,7 @@ jQuery(document).ready(function ($) {
     $('#doaction, #doaction2').on('click', function (e) {
         var selectedAction = $(this).prev('select').val();
 
-        if (selectedAction === 'delete') {
+        if (selectedAction === 'bulk-delete') {
             // Check if any items are selected
             if ($('input[name="registration[]"]:checked').length === 0) {
                 alert('Please select at least one item to delete.');

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .dog-registration-form {
     --primary-color: #8e7552;
     --hover-color: #a1835a;
@@ -19,7 +26,8 @@
     cursor: pointer;
 }
 
-.add-new-dog-btn:hover {
+.add-new-dog-btn:hover,
+.dog-submit-btn:hover {
     background: var(--hover-color);
 }
 
@@ -59,6 +67,7 @@
 }
 
 .dog-registration-form input[type='text'],
+.dog-registration-form input[type='number'],
 .dog-registration-form textarea {
     width: 100%;
 }
@@ -68,10 +77,10 @@
     border-color: var(--primary-color);
 }
 
-.certificate-upload {
+.certificate-upload label {
     border: 1px solid var(--border-color);
     border-radius: 3px;
-    padding: 4px 15px;
+    padding: 8px 15px;
 }
 
 .certificate-upload input[type='file'] {
@@ -87,11 +96,119 @@
 }
 
 .input-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     gap: 20px;
 }
 
+.checkbox-group input[type='checkbox'] {
+    display: none;
+}
+
+.checkbox-group {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    white-space: nowrap;
+}
+
+.checkbox-group label {
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-group label:before {
+    content: '';
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+.checkbox-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 7px;
+    width: 4px;
+    height: 10px;
+    border: solid var(--primary-color);
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Custom radio button */
+.agreement-text [type='radio']:checked,
+.agreement-text [type='radio']:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.agreement-text [type='radio']:checked + label,
+.agreement-text [type='radio']:not(:checked) + label {
+    position: relative;
+    padding-left: 22px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+}
+.agreement-text [type='radio']:checked + label:before,
+.agreement-text [type='radio']:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--primary-color);
+    border-radius: 100%;
+    background: #fff;
+}
+.agreement-text [type='radio']:checked + label:after,
+.agreement-text [type='radio']:not(:checked) + label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.agreement-text [type='radio']:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+}
+.agreement-text [type='radio']:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.agreement-text label:last-child {
+    margin-left: 10px;
+}
+
 .input-group > .form-control {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
     flex: 1;
 }
 
@@ -123,6 +240,9 @@
 
 @media only screen and (max-width: 768px) {
     .input-group {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
 

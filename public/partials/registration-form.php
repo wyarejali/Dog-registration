@@ -24,16 +24,16 @@
 
         <div class="input-group">
             <div class="form-control">
-                <input type="text" name="dog_name" id="dog_name" placeholder="Dogs Name">
+                <input required type="text" name="dog_name" id="dog_name" placeholder="Dogs Name*">
             </div>
             <div class="form-control">
-                <input type="text" name="breed_sex" id="sex" placeholder="Breed/Sex">
+                <input required type="text" name="breed_sex" id="sex" placeholder="Breed/Sex*">
             </div>
             <div class="form-control">
-                <input type="text" name="age" id="age" placeholder="Age">
+                <input required type="text" name="age" id="age" placeholder="Age*">
             </div>
             <div class="form-control">
-                <input type="text" name="neutered" id="neutered" placeholder="Neutered Y/N">
+                <input required type="text" name="neutered" id="neutered" placeholder="Neutered Y/N*">
             </div>
         </div>
 
@@ -45,7 +45,7 @@
             <textarea name="medical_notes" rows="3" id="medical_notes" placeholder="Medical Notes"></textarea>
         </div>
 
-        <div class="input-group">
+        <div class="input-group checkbox-group">
             <div class="form-control">
                 <input type="checkbox" name="vaccination" id="vaccination">
                 <label for="vaccination">Vaccination Proof Full Booster</label>
@@ -57,9 +57,11 @@
             </div>
         </div>
 
-        <div class="form-control certificate-upload">
-            <label for="certificate">Upload Vaccination Certificate</label>
-            <input type="file" name="certificate" id="certificate">
+        <div class="certificate-upload">
+            <label for="certificate" class="form-control">
+                <span>Upload Certificate</span>
+                <input type="file" name="certificate" id="certificate">
+            </label>
         </div>
     </div>
 
@@ -74,40 +76,40 @@
     <h2><?php _e( 'Owner Details', 'dog-eclipse' ); ?></h2>
     <div class="owner-details">
         <div class="form-control">
-            <input type="text" name="owner_name" id="owner_name" placeholder="Name">
+            <input required type="text" name="owner_name" id="owner_name" placeholder="Name*">
         </div>
 
         <div class="form-control">
-            <input type="text" name="address" id="address" placeholder="Address">
+            <input required type="text" name="address" id="address" placeholder="Address*">
         </div>
         <div class="form-control">
-            <input type="text" name="phone" id="phone" placeholder="Phone">
-        </div>
-
-        <div class="form-control">
-            <input type="text" name="vet_contact" id="vet_contact" placeholder="Vet Contact">
+            <input required type="number" name="phone" id="phone" placeholder="Phone*">
         </div>
 
         <div class="form-control">
-            <input type="text" name="emergency_contact" id="emergency_contact" placeholder="Emergency Contact">
+            <input required type="text" name="vet_contact" id="vet_contact" placeholder="Vet Contact*">
+        </div>
+
+        <div class="form-control">
+            <input required type="text" name="emergency_contact" id="emergency_contact" placeholder="Emergency Contact*">
         </div>
     </div>
 
     <div class="agreement">
         <p class="agreement-text">I Understand the inherent risks involved in my dog(s) exercising with other dogs whilst under super supervision.
             <b>
-                <label for="do_consent">I do</label>
                 <input type="radio" name="consent" id="do_consent" value="do_consent">
-                <label for="no_consent">I do not</label>
+                <label for="do_consent">I do</label>
                 <input type="radio" name="consent" id="no_consent" value="no_consent">
+                <label for="no_consent">I do not</label>
             </b> consent to my dog(s) exercising with other dogs under supervision. Neither Dog Eclipse Limited nor its staff shall be liable for any injury to any dog caused by rough play, kennel cough or otherwise.</p>
 
         <div class="input-group">
             <div class="form-control">
-                <input type="text" name="signed" id="signed" placeholder="Signed">
+                <input required type="text" name="signed" id="signed" placeholder="Signed*">
             </div>
             <div class="form-control">
-                <input type="date" name="date" id="date" placeholder="Date">
+                <input required type="date" name="date" id="date">
             </div>
         </div>
     </div>

@@ -105,20 +105,31 @@ class Dog_Eclipse_Admin {
                 $message = 'deleted';
             }
 
-            // Bulk deletion
-            if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'delete' && isset( $_REQUEST['registration'] ) && is_array( $_REQUEST['registration'] ) ) {
+            // Check if a bulk action was requested
+            if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'bulk-delete' && isset( $_REQUEST['registration'] ) ) {
+                // Check permissions
+                if ( !current_user_can( 'manage_options' ) ) {
+                    wp_die( __( 'You do not have sufficient permissions to access this page.', 'dog-eclipse' ) );
+                }
+
                 // Verify nonce
                 check_admin_referer( 'bulk-registrations' );
 
-                $count = 0;
-                foreach ( $_REQUEST['registration'] as $id ) {
-                    $id = intval( $id );
+                // Process bulk deletion
+                global $wpdb;
+                $table_name    = $wpdb->prefix . 'dog_registrations';
+                $registrations = array_map( 'intval', $_REQUEST['registration'] );
+
+                foreach ( $registrations as $id ) {
                     $wpdb->delete( $table_name, array( 'id' => $id ), array( '%d' ) );
-                    $count++;
                 }
 
-                $message = 'bulk-deleted';
+                // Redirect back to list page with message
+                $count = count( $registrations );
+                wp_redirect( add_query_arg( 'bulk-deleted', $count, admin_url( 'admin.php?page=dog-eclipse-registrations' ) ) );
+                exit;
             }
+
         } else if ( isset( $_REQUEST['page'] ) || $_REQUEST['page'] == 'dog-eclipse-registration-details' ) {
             global $wpdb;
             $table_name   = $wpdb->prefix . 'dog_registrations';
@@ -151,6 +162,16 @@ class Dog_Eclipse_Admin {
             exit;
         }
     }
+
+    /**
+     * Handle bulk actions
+     */
+    // public function handle_bulk_actions() {
+    //     if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] !== 'dog-eclipse-registrations' ) {
+    //         return;
+    //     }
+
+    // }
 
     /**
      * Display registrations list page

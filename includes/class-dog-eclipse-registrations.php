@@ -36,6 +36,11 @@ class Dog_Eclipse_Registrations {
         // Register and enqueue JS
         wp_register_script( 'dog-eclipse-script', DOG_ECLIPSE_PLUGIN_URL . 'public/js/dog-eclipse-public.js', array( 'jquery' ), DOG_ECLIPSE_VERSION, true );
         wp_enqueue_script( 'dog-eclipse-script' );
+
+        wp_localize_script( 'dog-eclipse-admin-script', 'dog_eclipse_form_vars', array(
+            'delete_confirm'      => __( 'Are you sure you want to delete this registration? This action cannot be undone.', 'dog-eclipse' ),
+            'bulk_delete_confirm' => __( 'Are you sure you want to delete these registrations? This action cannot be undone.', 'dog-eclipse' ),
+        ) );
     }
 
     /**
