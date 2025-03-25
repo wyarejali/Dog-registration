@@ -1,0 +1,136 @@
+.dog-registration-form {
+    --primary-color: #8e7552;
+    --hover-color: #a1835a;
+    --border-color: #c6c6c6;
+}
+
+.add-new-dog-btn,
+.dog-submit-btn {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.add-new-dog-btn:hover {
+    background: var(--hover-color);
+}
+
+.dog-registration-form p {
+    margin-bottom: 15px;
+}
+
+.dog-registration-form p label {
+    color: var(--primary-color);
+}
+
+.dog-registration-form h2 {
+    margin-bottom: 10px;
+}
+
+.dog-details,
+.owner-details,
+.additional-notes,
+.agreement {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.dog-registration-form .form-control input,
+.dog-registration-form .form-control textarea {
+    outline: none;
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 3px;
+    color: #111;
+}
+
+.dog-registration-form .form-control:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.dog-registration-form input[type='text'],
+.dog-registration-form textarea {
+    width: 100%;
+}
+
+.dog-registration-form input[type='text']:focus,
+.dog-registration-form textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.certificate-upload {
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    padding: 4px 15px;
+}
+
+.certificate-upload input[type='file'] {
+    border: none;
+}
+
+.certificate-upload input[type='file']::-webkit-file-upload-button {
+    display: none;
+}
+
+.certificate-upload input[type='file']::file-selector-button {
+    display: none;
+}
+
+.input-group {
+    display: flex;
+    gap: 20px;
+}
+
+.input-group > .form-control {
+    flex: 1;
+}
+
+.dog-details .remove-dog-btn {
+    border: none;
+    background: #a00;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.dog-details .remove-dog-btn:hover {
+    background: #b10606;
+}
+
+.dog-reg-success-message {
+    background: #d1e7dd;
+    color: #0a3622;
+    border: 1px solid #a3cfbb;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+    .input-group {
+        flex-direction: column;
+    }
+
+    .dog-registration-form .input-group .form-control {
+        margin-bottom: 0;
+    }
+
+    .dog-registration-form .form-control:last-child {
+        margin-bottom: 20px;
+    }
+}

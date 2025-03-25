@@ -1,0 +1,150 @@
+.dog-eclipse,
+.dog-eclipse p {
+    --success: #00b82f;
+    --danger: #a00;
+    --view: #201d1e;
+    --download: #009900;
+    --space: 30px;
+    font-size: 14px;
+    line-height: 1.4rem;
+}
+
+.dog-eclipse-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.dog-btn {
+    opacity: 0.8;
+}
+
+.dog-btn:hover {
+    opacity: 1;
+}
+
+.button.delete-registration {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.button.delete-registration:hover {
+    background: var(--danger);
+    color: #fff;
+    border-color: var(--danger);
+}
+
+.dog-registration-container {
+    display: flex;
+    gap: var(--space);
+    margin-top: var(--space);
+    align-items: self-start;
+}
+
+.dog-registration-container h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #8e7552;
+}
+
+.dog-owner-details,
+.dogs-details-wrapper {
+    border: 1px solid #ddd;
+    padding: var(--space);
+    border-radius: 6px;
+    background: #fff;
+}
+
+.dogs-details-wrapper {
+    flex: 1;
+}
+
+.dog-owner-details {
+    min-width: 380px;
+    position: sticky;
+    top: 50px;
+}
+
+.dog-registration-container table {
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.dog-registration-container table th,
+.dog-registration-container table td {
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+}
+
+.all-dogs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space);
+    margin-bottom: var(--space);
+}
+
+.all-dogs:has(.dog-item:nth-child(1):nth-last-child(1)) {
+    grid-template-columns: 1fr;
+}
+
+.all-dogs .dog-item h4 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.dog-owner-details td.consent-no {
+    color: var(--danger);
+}
+
+.dog-owner-details td.consent-yes {
+    color: var(--success);
+}
+
+tr.section th,
+tr.section td {
+    border: none;
+    padding-left: 0;
+    padding-top: var(--space);
+}
+
+.dogs-details-wrapper td.certificate a.button:first-child {
+    background: var(--view);
+    border: none;
+}
+
+.dogs-details-wrapper td.certificate a.button {
+    display: inline-flex;
+    background: var(--download);
+    color: #fff;
+    align-items: center;
+    padding: 5px 20px;
+    gap: 10px;
+    border: none;
+}
+
+.dogs-details-wrapper td.certificate a.button img {
+    width: 20px;
+}
+
+.dogs-details-wrapper td.certificate a.button:first-child img {
+    width: 16px;
+}
+
+/* Responsive css */
+@media only screen and (max-width: 1400px) {
+    .all-dogs {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .dog-registration-container {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .dog-eclipse-header {
+        flex-direction: column;
+    }
+}
