@@ -12,8 +12,6 @@ jQuery(document).ready(function ($) {
             return;
         }
 
-        console.log('clicked');
-
         dogCount++;
 
         // Clone the first dog details container

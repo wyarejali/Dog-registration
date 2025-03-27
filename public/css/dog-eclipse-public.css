@@ -8,7 +8,9 @@
 .dog-registration-form {
     --primary-color: #8e7552;
     --hover-color: #a1835a;
-    --border-color: #c6c6c6;
+    --border-color: #dcd7d7;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .add-new-dog-btn,
@@ -17,8 +19,8 @@
     color: #fff;
     border: none;
     outline: none;
-    padding: 10px 25px;
-    font-size: 14px;
+    padding: 14px 25px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 4px;
     display: inline-block;
@@ -41,6 +43,7 @@
 
 .dog-registration-form h2 {
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .dog-details,
@@ -51,6 +54,7 @@
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 20px;
+    background: rgb(255 255 255);
 }
 
 .dog-registration-form .form-control input,
@@ -60,6 +64,9 @@
     padding: 8px 15px;
     border-radius: 3px;
     color: #111;
+    background: #fff;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .dog-registration-form .form-control:not(:last-child) {
@@ -81,6 +88,7 @@
     border: 1px solid var(--border-color);
     border-radius: 3px;
     padding: 8px 15px;
+    background: #fff;
 }
 
 .certificate-upload input[type='file'] {
@@ -150,21 +158,21 @@
 }
 
 /* Custom radio button */
-.agreement-text [type='radio']:checked,
-.agreement-text [type='radio']:not(:checked) {
+.agreement [type='radio']:checked,
+.agreement [type='radio']:not(:checked) {
     position: absolute;
     left: -9999px;
 }
-.agreement-text [type='radio']:checked + label,
-.agreement-text [type='radio']:not(:checked) + label {
+.agreement [type='radio']:checked + label,
+.agreement [type='radio']:not(:checked) + label {
     position: relative;
-    padding-left: 22px;
+    padding-left: 26px;
     cursor: pointer;
     line-height: 20px;
     display: inline-block;
 }
-.agreement-text [type='radio']:checked + label:before,
-.agreement-text [type='radio']:not(:checked) + label:before {
+.agreement [type='radio']:checked + label:before,
+.agreement [type='radio']:not(:checked) + label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -175,8 +183,8 @@
     border-radius: 100%;
     background: #fff;
 }
-.agreement-text [type='radio']:checked + label:after,
-.agreement-text [type='radio']:not(:checked) + label:after {
+.agreement [type='radio']:checked + label:after,
+.agreement [type='radio']:not(:checked) + label:after {
     content: '';
     width: 10px;
     height: 10px;
@@ -189,20 +197,20 @@
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-.agreement-text [type='radio']:not(:checked) + label:after {
+.agreement [type='radio']:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     -ms-transform: scale(0);
     transform: scale(0);
 }
-.agreement-text [type='radio']:checked + label:after {
+.agreement [type='radio']:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
 }
 
-.agreement-text label:last-child {
+.agreement label:last-child {
     margin-left: 10px;
 }
 

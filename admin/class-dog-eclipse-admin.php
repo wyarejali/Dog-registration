@@ -22,6 +22,9 @@ class Dog_Eclipse_Admin {
 
         // Handle deletion actions
         add_action( 'admin_init', array( $this, 'handle_deletion_actions' ) );
+
+        // handle assessment submissions
+        add_action( 'admin_init', array( $this, 'handle_assessment_submission' ) );
     }
 
     /**
@@ -84,7 +87,7 @@ class Dog_Eclipse_Admin {
         $redirect_url = '';
         $message      = '';
 
-        if ( isset( $_REQUEST['page'] ) || $_REQUEST['page'] == 'dog-eclipse-registrations' ) {
+        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'dog-eclipse-registrations' ) {
             global $wpdb;
             $table_name   = $wpdb->prefix . 'dog_registrations';
             $redirect_url = admin_url( 'admin.php?page=dog-eclipse-registrations' );
@@ -130,7 +133,7 @@ class Dog_Eclipse_Admin {
                 exit;
             }
 
-        } else if ( isset( $_REQUEST['page'] ) || $_REQUEST['page'] == 'dog-eclipse-registration-details' ) {
+        } else if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'dog-eclipse-registration-details' ) {
             global $wpdb;
             $table_name   = $wpdb->prefix . 'dog_registrations';
             $redirect_url = admin_url( 'admin.php?page=dog-eclipse-registrations' );
@@ -152,6 +155,53 @@ class Dog_Eclipse_Admin {
                 wp_redirect( $redirect_url );
                 exit;
             }
+
+            // Assessment deletion from details page
+            if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'dog-eclipse-registration-details' ) {
+
+                if ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'delete_assessment' ) {
+
+                    $table_name = $wpdb->prefix . 'dog_registrations';
+
+                    $registration_id = intval( $_REQUEST['registration_id'] );
+                    $dog_index       = intval( $_REQUEST['dog_index'] );
+                    $assessment_key  = intval( $_REQUEST['assessment_key'] );
+
+                    // Verify nonce
+                    if ( !isset( $_REQUEST['_wpnonce'] ) || !wp_verify_nonce( $_REQUEST['_wpnonce'], 'delete_assessment_action' ) ) {
+                        wp_die( __( 'Security check failed', 'dog-eclipse' ) );
+                    }
+
+                    // Retrieve the registration data
+                    $registration = $this->get_registration_by_id( $registration_id );
+                    $dogs         = maybe_unserialize( $registration->dogs );
+
+                    if ( isset( $dogs[$dog_index]['assessments'][$assessment_key] ) ) {
+                        // Remove the assessment
+                        unset( $dogs[$dog_index]['assessments'][$assessment_key] );
+
+                        // Reindex the array to maintain proper keys
+                        $dogs[$dog_index]['assessments'] = array_values( $dogs[$dog_index]['assessments'] );
+
+                        // Update the registration data
+                        $this->update_registration_dogs( $registration_id, $dogs );
+
+                        // Redirect back with a success message
+                        wp_redirect( add_query_arg( 'message', 'assessment_deleted', admin_url( 'admin.php?page=dog-eclipse-registration-details&id=' . $registration_id ) ) );
+                        exit;
+                    } else {
+                        // Redirect back with an error message if the assessment is not found
+                        wp_redirect( add_query_arg( 'message', 'assessment_not_found', $redirect_url ) );
+                        exit;
+                    }
+                }
+            }
+
+            // Redirect after deletion if needed
+            if ( !empty( $message ) ) {
+                wp_redirect( add_query_arg( 'message', $message, $redirect_url ) );
+                exit;
+            }
         } else {
             return;
         }
@@ -164,14 +214,64 @@ class Dog_Eclipse_Admin {
     }
 
     /**
-     * Handle bulk actions
+     * Handle assessment submission
      */
-    // public function handle_bulk_actions() {
-    //     if ( !isset( $_REQUEST['page'] ) || $_REQUEST['page'] !== 'dog-eclipse-registrations' ) {
-    //         return;
-    //     }
+    public function handle_assessment_submission() {
 
-    // }
+        if ( isset( $_POST['submit_assessment'] ) && check_admin_referer( 'add_assessment_action', 'add_assessment_nonce' ) ) {
+            $registration_id = intval( $_POST['registration_id'] );
+            $dog_index       = intval( $_POST['dog_index'] );
+            $assessment      = sanitize_textarea_field( $_POST['assessment'] );
+            $timestamp       = current_time( 'mysql' ); // Get the current date and time in WordPress format
+
+            // Retrieve the registration data
+            $registration = $this->get_registration_by_id( $registration_id );
+            $dogs         = maybe_unserialize( $registration->dogs );
+
+            if ( isset( $dogs[$dog_index] ) ) {
+                // Initialize assessments array if not already set
+                if ( !isset( $dogs[$dog_index]['assessments'] ) || !is_array( $dogs[$dog_index]['assessments'] ) ) {
+                    $dogs[$dog_index]['assessments'] = array();
+                }
+
+                // Add the new assessment with timestamp
+                $dogs[$dog_index]['assessments'][] = array(
+                    'text'      => $assessment,
+                    'submitted' => $timestamp,
+                    'author'    => get_current_user_id(),
+                );
+
+                // Update the registration data
+                $this->update_registration_dogs( $registration_id, $dogs );
+
+                wp_redirect( add_query_arg( 'message', 'assessment_added', admin_url( 'admin.php?page=dog-eclipse-registration-details&id=' . $registration_id ) ) );
+                exit;
+            }
+        }
+
+    }
+
+    /**
+     * Get registration by ID
+     */
+    public function get_registration_by_id( $id ) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'dog_registrations';
+
+        return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE id = %d", $id ) );
+    }
+
+    /**
+     * Update registration dogs data
+     */
+    public function update_registration_dogs( $id, $dogs ) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'dog_registrations';
+        $data       = array( 'dogs' => serialize( $dogs ) );
+        $where      = array( 'id' => $id );
+
+        $wpdb->update( $table_name, $data, $where );
+    }
 
     /**
      * Display registrations list page

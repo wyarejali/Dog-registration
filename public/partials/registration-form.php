@@ -14,7 +14,7 @@
     <div class="dog-reg-success-message"><b><?php _e( 'Success!', 'dog-eclipse' ); ?></b><?php _e( 'Submission successful!', 'dog-eclipse' ); ?></div>
 <?php endif; ?>
 
-<form class="dog-registration-form" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>" enctype="multipart/form-data">
+<form class="<?php echo isset( $_GET['submitted'] ) ? 'dog-reg-success ' : '' ?>dog-registration-form" method="post" action="<?php echo admin_url( 'admin-post.php' ); ?>" enctype="multipart/form-data">
     <input type="hidden" name="action" value="der_form_submit">
     <?php wp_nonce_field( 'dog_eclipse_reg', 'dog_eclipse_reg_nonce' ); ?>
 
@@ -97,12 +97,15 @@
 
     <div class="agreement">
         <p class="agreement-text">I Understand the inherent risks involved in my dog(s) exercising with other dogs whilst under super supervision.
-            <b>
-                <input type="radio" name="consent" id="do_consent" value="do_consent">
-                <label for="do_consent">I do</label>
-                <input type="radio" name="consent" id="no_consent" value="no_consent">
-                <label for="no_consent">I do not</label>
-            </b> consent to my dog(s) exercising with other dogs under supervision. Neither Dog Eclipse Limited nor its staff shall be liable for any injury to any dog caused by rough play, kennel cough or otherwise.</p>
+            I consent to my dog(s) exercising with other dogs under supervision. Neither Dog Eclipse Limited nor its staff shall be liable for any injury to any dog caused by rough play, kennel cough or otherwise.</p>
+        <div class="form-control">
+            <input required type="radio" name="consent" id="do_consent">
+            <label for="do_consent">I agree</label>
+        </div>
+        <div class="form-control">
+            <input required type="radio" name="consent" id="no_consent">
+            <label for="no_consent">I do not agree</label>
+        </div>
 
         <div class="input-group">
             <div class="form-control">
