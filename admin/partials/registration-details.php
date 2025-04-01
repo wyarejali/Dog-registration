@@ -51,58 +51,67 @@
                 <h3><?php _e( 'Owner Details', 'dog-eclipse' ); ?></h3>
                 <div class="owner-details-wrapper">
                     <table>
-                    <tr class="section">
-                        <th><?php _e( 'Contact', 'dog-eclipse' ); ?></th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Name', 'dog-eclipse' ); ?></th>
-                        <td><?php echo esc_html( $registration->owner_name ); ?></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Address', 'dog-eclipse' ); ?></th>
-                        <td><?php echo esc_html( $registration->address ); ?></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Phone', 'dog-eclipse' ); ?></th>
-                        <td><a href="tel:<?php echo esc_html( $registration->phone ); ?>"><?php echo esc_html( $registration->phone ); ?></a></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Vet Contact', 'dog-eclipse' ); ?></th>
-                        <td><?php echo esc_html( $registration->vet_contact ); ?></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Emergency Contact', 'dog-eclipse' ); ?></th>
-                        <td><?php echo esc_html( $registration->emergency_contact ); ?></td>
-                    </tr>
+                        <tr class="section">
+                            <th><?php _e( 'Contact', 'dog-eclipse' ); ?></th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Name', 'dog-eclipse' ); ?></th>
+                            <td><?php echo esc_html( $registration->owner_name ); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Address', 'dog-eclipse' ); ?></th>
+                            <td><?php echo esc_html( $registration->address ); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Phone', 'dog-eclipse' ); ?></th>
+                            <td><a href="tel:<?php echo esc_html( $registration->phone ); ?>"><?php echo esc_html( $registration->phone ); ?></a></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Backup Phone', 'dog-eclipse' ); ?></th>
+                            <td><a href="tel:<?php echo esc_html( $registration->phone2 ); ?>"><?php echo esc_html( $registration->phone2 ); ?></a></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Vet Contact', 'dog-eclipse' ); ?></th>
+                            <td><?php echo esc_html( $registration->vet_contact ); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Emergency Contact', 'dog-eclipse' ); ?></th>
+                            <td><?php echo esc_html( $registration->emergency_contact ); ?></td>
+                        </tr>
 
 
-                    <tr class="section">
-                        <th><?php _e( 'Agreement', 'dog-eclipse' ); ?></th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Consent', 'dog-eclipse' ); ?></th>
-                        <td class="<?php echo $registration->consent === 'yes' ? 'consent-yes' : 'consent-no' ?>"><?php echo $registration->consent === 'yes' ? __( 'Yes', 'dog-eclipse' ) : __( 'No', 'dog-eclipse' ); ?></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Signed', 'dog-eclipse' ); ?></th>
-                        <td><?php echo esc_html( $registration->signed ); ?></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Date', 'dog-eclipse' ); ?></th>
-                        <td><?php echo esc_html( $registration->date ); ?></td>
-                    </tr>
+                        <tr class="section">
+                            <th><?php _e( 'Agreement', 'dog-eclipse' ); ?></th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Consent', 'dog-eclipse' ); ?></th>
+                            <td class="<?php echo $registration->consent === 'yes' ? 'consent-yes' : 'consent-no' ?>"><?php echo $registration->consent === 'yes' ? __( 'Yes', 'dog-eclipse' ) : __( 'No', 'dog-eclipse' ); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Signed', 'dog-eclipse' ); ?></th>
+                            <td><?php echo esc_html( $registration->signed ); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Date', 'dog-eclipse' ); ?></th>
+                            <td><?php echo esc_html( $registration->date ); ?></td>
+                        </tr>
 
-                    <tr class="section">
-                        <th><?php _e( 'Submission', 'dog-eclipse' ); ?></th>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th><?php _e( 'Date & Time', 'dog-eclipse' ); ?></th>
-                        <td><?php echo date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $registration->submission_date ) ); ?></td>
-                    </tr>
-                </table>
+                        <tr class="section">
+                            <th><?php _e( 'Submission', 'dog-eclipse' ); ?></th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th><?php _e( 'Date & Time', 'dog-eclipse' ); ?></th>
+                            <td><?php echo date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $registration->submission_date ) ); ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="additional-notes">
+                    <h3><?php _e( 'Additional Notes', 'dog-eclipse' ); ?></h3>
+                    <p><?php echo nl2br( esc_html( $registration->additional_notes ) ); ?></p>
                 </div>
 
             </div>
@@ -111,7 +120,7 @@
                 <div class="dog-details-head">
                     <h3><?php _e( 'Dog Details', 'dog-eclipse' ); ?></h3>
                     <div class="dog-eclipse-action">
-                        <a href="<?php echo esc_url( $delete_url ); ?>" class="delete-registration">
+                        <a href="<?php echo esc_url( $delete_url ); ?>" class="delete-registration delete-item">
                         <img src="<?php echo DOG_ECLIPSE_PLUGIN_URL . 'admin/assets/img/trash.svg' ?>" alt="trash">
                         <?php _e( 'Delete Registration', 'dog-eclipse' ); ?>
                         </a>
@@ -141,20 +150,16 @@
                                         <td><?php echo esc_html( $dog['neutered'] ); ?></td>
                                     </tr>
                                     <tr>
-                                        <th><?php _e( 'Feeding Guide', 'dog-eclipse' ); ?></th>
-                                        <td><?php echo nl2br( esc_html( $dog['feeding_guide'] ) ); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th><?php _e( 'Medical Notes', 'dog-eclipse' ); ?></th>
-                                        <td><?php echo nl2br( esc_html( $dog['medical_notes'] ) ); ?></td>
+                                        <th><?php _e( 'Kennels', 'dog-eclipse' ); ?></th>
+                                        <td><?php echo nl2br( esc_html( $dog['kennels'] ) ); ?></td>
                                     </tr>
                                     <tr>
                                         <th><?php _e( 'Vaccination Proof', 'dog-eclipse' ); ?></th>
-                                        <td><?php echo $dog['vaccination'] === 'yes' ? __( 'Yes', 'dog-eclipse' ) : __( 'No', 'dog-eclipse' ); ?></td>
+                                        <td><?php echo nl2br( esc_html( $dog['vaccination'] ) ); ?></td>
                                     </tr>
                                     <tr>
                                         <th><?php _e( 'Kennel Vaccination', 'dog-eclipse' ); ?></th>
-                                        <td><?php echo $dog['kennel_vaccination'] === 'yes' ? __( 'Yes', 'dog-eclipse' ) : __( 'No', 'dog-eclipse' ); ?></td>
+                                        <td><?php echo nl2br( esc_html( $dog['kennel_vaccination'] ) ); ?></td>
                                     </tr>
                                     <tr>
                                         <th><?php _e( 'Certificate', 'dog-eclipse' ); ?></th>
@@ -234,40 +239,7 @@
                         <p><?php _e( 'No dog details available.', 'dog-eclipse' ); ?></p>
                     <?php endif; ?>
                 </div>
-
-                <div class="additional-notes">
-                    <h3><?php _e( 'Additional Notes', 'dog-eclipse' ); ?></h3>
-                    <p><?php echo nl2br( esc_html( $registration->additional_notes ) ); ?></p>
-                </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="wrap dog-eclipse-admin-wrap">
-    <div class="registration-details">
-        <?php if ( !empty( $registration->certificate_path ) ): ?>
-        <div class="section">
-            <h3><?php _e( 'Certificate', 'dog-eclipse' ); ?></h3>
-            <div class="certificate-preview">
-                <?php
-                    $file_ext         = pathinfo( $registration->certificate_path, PATHINFO_EXTENSION );
-                    $image_extensions = array( 'jpg', 'jpeg', 'png', 'gif' );
-
-                    if ( in_array( strtolower( $file_ext ), $image_extensions ) ) {
-                        // Display image preview
-                        echo '<div class="certificate-image">';
-                        echo '<img src="' . esc_url( $registration->certificate_path ) . '" alt="Certificate" style="max-width: 300px;">';
-                        echo '</div>';
-                    }
-                ?>
-                <p>
-                    <a href="<?php echo esc_url( $registration->certificate_path ); ?>" target="_blank" class="button">
-                        <?php _e( 'View/Download Certificate', 'dog-eclipse' ); ?>
-                    </a>
-                </p>
-            </div>
-        </div>
-        <?php endif; ?>
     </div>
 </div>

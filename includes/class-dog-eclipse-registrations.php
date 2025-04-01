@@ -80,8 +80,7 @@ class Dog_Eclipse_Registrations {
             $breed_field       = 'breed_sex' . $suffix;
             $age_field         = 'age' . $suffix;
             $neutered_field    = 'neutered' . $suffix;
-            $feeding_field     = 'feeding_guide' . $suffix;
-            $medical_field     = 'medical_notes' . $suffix;
+            $kennels           = 'kennels' . $suffix;
             $vaccination_field = 'vaccination' . $suffix;
             $kennel_field      = 'kennel_vaccination' . $suffix;
             $certificate_field = 'certificate' . $suffix;
@@ -109,10 +108,9 @@ class Dog_Eclipse_Registrations {
                     'breed_sex'          => isset( $_POST[$breed_field] ) ? sanitize_text_field( $_POST[$breed_field] ) : '',
                     'age'                => isset( $_POST[$age_field] ) ? sanitize_text_field( $_POST[$age_field] ) : '',
                     'neutered'           => isset( $_POST[$neutered_field] ) ? sanitize_text_field( $_POST[$neutered_field] ) : '',
-                    'feeding_guide'      => isset( $_POST[$feeding_field] ) ? sanitize_textarea_field( $_POST[$feeding_field] ) : '',
-                    'medical_notes'      => isset( $_POST[$medical_field] ) ? sanitize_textarea_field( $_POST[$medical_field] ) : '',
-                    'vaccination'        => isset( $_POST[$vaccination_field] ) ? 'yes' : 'no',
-                    'kennel_vaccination' => isset( $_POST[$kennel_field] ) ? 'yes' : 'no',
+                    'kennels'            => isset( $_POST[$kennels] ) ? sanitize_textarea_field( $_POST[$kennels] ) : '',
+                    'vaccination'        => isset( $_POST[$vaccination_field] ) ? sanitize_textarea_field( $_POST[$vaccination_field] ) : '',
+                    'kennel_vaccination' => isset( $_POST[$kennel_field] ) ? sanitize_textarea_field( $_POST[$kennel_field] ) : '',
                     'certificate_path'   => $certificate_path,
                 );
             }
@@ -123,6 +121,7 @@ class Dog_Eclipse_Registrations {
             'owner_name'        => sanitize_text_field( $_POST['owner_name'] ),
             'address'           => sanitize_text_field( $_POST['address'] ),
             'phone'             => sanitize_text_field( $_POST['phone'] ),
+            'phone2'            => sanitize_text_field( $_POST['phone2'] ),
             'vet_contact'       => sanitize_text_field( $_POST['vet_contact'] ),
             'emergency_contact' => sanitize_text_field( $_POST['emergency_contact'] ),
             'dogs'              => serialize( $dogs ),

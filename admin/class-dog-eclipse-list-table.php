@@ -46,8 +46,8 @@ class Dog_Eclipse_List_Table extends WP_List_Table {
      */
     public function get_sortable_columns() {
         return array(
-            'owner_name'      => array('owner_name', true), // Default sort by name ASC
-            'submission_date' => array('submission_date', true), // Default sort by date DESC
+            'owner_name'      => array( 'owner_name', true ), // Default sort by name ASC
+            'submission_date' => array( 'submission_date', true ), // Default sort by date DESC
         );
     }
 
@@ -103,7 +103,7 @@ class Dog_Eclipse_List_Table extends WP_List_Table {
         $this->_column_headers = array( $columns, $hidden, $sortable );
 
         // Handle sorting (Default: `submission_date DESC` to show newest first)
-        $allowed_columns = array('owner_name', 'submission_date'); // Allowed sortable columns
+        $allowed_columns = array( 'owner_name', 'submission_date' ); // Allowed sortable columns
         $orderby         = isset( $_REQUEST['orderby'] ) && in_array( $_REQUEST['orderby'], $allowed_columns )
         ? esc_sql( $_REQUEST['orderby'] )
         : 'submission_date'; // Default sort by date
@@ -173,7 +173,7 @@ class Dog_Eclipse_List_Table extends WP_List_Table {
         );
 
         return sprintf(
-            '<a href="%s" class="button button-small">%s</a> <a href="%s" class="button button-small delete-registration" data-id="%s">%s</a>',
+            '<a href="%s" class="button button-small">%s</a> <a href="%s" class="button button-small delete-item" data-id="%s">%s</a>',
             esc_url( $view_url ),
             __( 'View', 'dog-eclipse' ),
             esc_url( $delete_url ),

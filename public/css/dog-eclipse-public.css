@@ -53,18 +53,19 @@
     border: 1px solid var(--border-color);
     padding: 20px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background: rgb(255 255 255);
 }
 
 .dog-registration-form .form-control input,
-.dog-registration-form .form-control textarea {
+.dog-registration-form .form-control textarea,
+.dog-registration-form .form-control select {
     outline: none;
     border: 1px solid var(--border-color);
     padding: 8px 15px;
     border-radius: 3px;
-    color: #111;
     background: #fff;
+    color: #757575;
     font-size: 16px;
     font-weight: 600;
 }
@@ -75,7 +76,9 @@
 
 .dog-registration-form input[type='text'],
 .dog-registration-form input[type='number'],
-.dog-registration-form textarea {
+.dog-registration-form textarea,
+.dog-registration-form select,
+.dog-registration-form input[type='date'] {
     width: 100%;
 }
 
@@ -87,8 +90,9 @@
 .certificate-upload label {
     border: 1px solid var(--border-color);
     border-radius: 3px;
-    padding: 8px 15px;
+    padding: 2px 15px;
     background: #fff;
+    display: block;
 }
 
 .certificate-upload input[type='file'] {

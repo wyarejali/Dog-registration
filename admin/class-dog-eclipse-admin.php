@@ -25,6 +25,42 @@ class Dog_Eclipse_Admin {
 
         // handle assessment submissions
         add_action( 'admin_init', array( $this, 'handle_assessment_submission' ) );
+
+        // Modify admin footer text
+        add_filter( 'admin_footer_text', array( $this, 'modify_admin_footer_text' ) );
+
+        // Modify admin footer version text
+        add_filter( 'update_footer', array( $this, 'modify_admin_footer_version_text' ), 11 );
+    }
+
+    /**
+     * Modify admin footer text when on the registrations page
+     */
+    public function modify_admin_footer_text( $text ) {
+        global $pagenow;
+
+        if ( $pagenow === 'admin.php' && isset( $_GET['page'] ) ) {
+            if ( $_GET['page'] === 'dog-eclipse-registrations' || $_GET['page'] === 'dog-eclipse-registration-details' ) {
+                $text .= ' | Dog Eclipse Registrations by <a href="https://wordpress.org/plugins/divinationkit-for-divi/" target="_blank">DiviNationKit</a>';
+            }
+        }
+
+        return $text;
+    }
+
+    /**
+     * Modify admin footer version text
+     */
+    public function modify_admin_footer_version_text( $text ) {
+        global $pagenow;
+
+        if ( $pagenow === 'admin.php' && isset( $_GET['page'] ) ) {
+            if ( $_GET['page'] === 'dog-eclipse-registrations' || $_GET['page'] === 'dog-eclipse-registration-details' ) {
+                $text .= ' | Dog Eclipse v-' . DOG_ECLIPSE_VERSION;
+            }
+        }
+
+        return $text;
     }
 
     /**

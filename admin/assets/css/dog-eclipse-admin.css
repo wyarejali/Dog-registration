@@ -52,6 +52,7 @@
 
 .delete-registration:hover {
     opacity: 1;
+    color: var(--danger);
 }
 
 .dog-registration-container {
@@ -71,14 +72,18 @@
     color: #8e7552;
 }
 
-.owner-details-wrapper {
-    min-width: 380px;
+.dog-owner-details {
     position: sticky;
     top: 50px;
+}
+
+.owner-details-wrapper {
+    min-width: 380px;
     background: #fff;
     padding: var(--space);
     border-radius: 6px;
     border: 1px solid #ddd;
+    margin-bottom: var(--space);
 }
 
 .dog-registration-container table {

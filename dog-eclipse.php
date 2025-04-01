@@ -3,7 +3,7 @@
  * Plugin Name: Dog Eclipse Registration
  * Plugin URI: https://divinationkit.com/plugins/dog-eclipse-registration
  * Description: A plugin to handle dog registration for Dog Eclipse. To display the registration form, use the shortcode [dog_registration_form].
- * Version: 1.1.0
+ * Version: 1.1.2
  * Author: Wyarej Ali
  * Author URI: https://divinationkit.com
  * Text Domain: dog-eclipse
@@ -15,7 +15,7 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'DOG_ECLIPSE_VERSION', '1.1.0' );
+define( 'DOG_ECLIPSE_VERSION', '1.1.2' );
 define( 'DOG_ECLIPSE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DOG_ECLIPSE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -57,6 +57,7 @@ function dog_eclipse_activate() {
         owner_name varchar(100) NOT NULL,
         address text NOT NULL,
         phone varchar(50) NOT NULL,
+        phone2 varchar(50) NOT NULL,
         vet_contact text,
         emergency_contact text,
         dogs longtext NOT NULL,
@@ -76,6 +77,10 @@ function dog_eclipse_activate() {
 register_deactivation_hook( __FILE__, 'dog_eclipse_deactivate' );
 function dog_eclipse_deactivate() {
     // Clean up if needed
+    // TODO:: remove this after testing
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'dog_registrations';
+    $wpdb->query( "DROP TABLE IF EXISTS $table_name" );
 }
 
 // Uninstall hook

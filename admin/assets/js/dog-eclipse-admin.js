@@ -3,7 +3,7 @@
  */
 jQuery(document).ready(function ($) {
     // Single item deletion confirmation
-    $(document).on('click', '.delete-registration', function (e) {
+    $(document).on('click', '.delete-item', function (e) {
         if (!confirm(dog_eclipse_vars.delete_confirm)) {
             e.preventDefault();
         }
